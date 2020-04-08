@@ -1,4 +1,5 @@
 org\cerner\fluxclient\SpringFluxClient.class
 org\cerner\model\Employee.class
+org\cerner\fluxclient\subscriber\EmployeeSubscriber.class
 org\cerner\fluxclient\App.class
 org\cerner\fluxclient\SpringFluxClient$1.class
