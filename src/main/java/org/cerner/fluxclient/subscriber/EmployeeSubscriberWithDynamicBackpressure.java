@@ -1,5 +1,7 @@
 package org.cerner.fluxclient.subscriber;
 
+import java.util.concurrent.TimeUnit;
+
 import org.cerner.fluxclient.service.DynamicBackpressureService;
 import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
@@ -36,6 +38,11 @@ public class EmployeeSubscriberWithDynamicBackpressure<Employee> extends BaseSub
 		if (consumed == limit) {
 			consumed = 0;
 			limit = dbs.getCurrentBackPressure();
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException ie) {
+				Thread.currentThread().interrupt();
+			}
 			LOGGER.info("hookOnNext(): Requesting for " + limit + " items.");
 			request(limit);
 		}
